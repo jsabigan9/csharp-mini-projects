@@ -1,7 +1,7 @@
 ﻿# Age Groups
 
 ## Exercise: 
-This project is designed to help beginners practice using the logical `&&` (AND) operator in C#.
+This project is designed to help beginners practice using the logical `&&` (AND) operator and ToUpper() is a string method.
 
 ## Overview: 
 This C# console application allows users to input their name and age, and it determines their age group: Child, Teenager, Adult, or Senior.
