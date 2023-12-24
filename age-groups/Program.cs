@@ -6,6 +6,7 @@ internal class Program
     {
 
         Console.WriteLine("Determine if you're and Child, Teenager, Adult, or Senior!");
+        Console.WriteLine("\n -_-_-_-_-_-_-_-_-_-_-_-_-_- \n");
 
         Console.Write("Enter your Name: ");
         string nameInput = Console.ReadLine();
