@@ -1,7 +1,7 @@
 ﻿# Calculator
 
 ## Exercise:
-This project is designed to help beginners practice using the `switch` statement in C#.
+This project is designed to practice the `switch` statement in C#.
 
 ## Overview:
 The Calculator project is a simple console application that performs basic arithmetic operations based on user input. It allows the user to input two numbers and an operator (+, -, *, /), and then it performs the corresponding calculation using a `switch` statement.
