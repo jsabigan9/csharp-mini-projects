@@ -18,7 +18,8 @@
             switch (choiceInt)
             {
                 case 1:
-                    ConvertFeetToInches();
+                    var feetInput = GetFeetFromUser();
+                    ConvertFeetToInch(feetInput);
                     return;
                 case 2:
                     Console.WriteLine("\nThank you for using the Feet to Inches Converter!");
@@ -37,27 +38,36 @@
         Console.WriteLine("(2) Exit the program.");
     }
 
-    static void ConvertFeetToInches()
+    static double GetFeetFromUser()
     {
-        const int InchesPerFoot = 12;
-
         while (true)
         {
             Console.Write("\nEnter a value in feet: ");
             string inputString = Console.ReadLine();
 
-            if (!double.TryParse(inputString, out double feetInput) || feetInput < 0)
+            if (double.TryParse(inputString, out double feetInput) && feetInput >= 0)
             {
-                DisplayErrorMessage("Please enter a valid positive numeric input.");
-                continue;
+                return feetInput;
             }
             else
             {
-                double convertedInch = feetInput * InchesPerFoot;
-                Console.WriteLine($"\n{feetInput} feet is equal to {convertedInch:F2} inches.\n");
-                break;
+                DisplayErrorMessage("Please enter a valid positive numeric input.");
             }
         }
+    }
+    static double ConvertFeetToInch(double feetInput)
+    {
+        double result;
+        const double InchesPerFoot = 12;
+        result = feetInput * InchesPerFoot;
+        DisplayResultMessage(feetInput, result);
+
+        return result;
+    }
+
+    static void DisplayResultMessage(double feetInput, double result)
+    {
+        Console.WriteLine($"{feetInput} is equals to {result} inches");
     }
 
     static void DisplayErrorMessage(string message)
