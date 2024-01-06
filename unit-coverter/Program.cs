@@ -2,24 +2,32 @@
 {
     static void Main(string[] args)
     {
+        MainMenu();
+    }
+
+    static void MainMenu()
+    {
+        Console.Clear();
+        DisplayMenu("Welcome to the Unit Converter!\n");
+        DisplayMenu("(1) Feet And Inch Converter.");
+        DisplayMenu("(2) Exit the program");
+
+
         while (true)
         {
-            DisplayMenu();
+            string stringinput = Console.ReadLine();
+            int intInput;
 
-            string choice = Console.ReadLine();
-            int choiceInt;
-
-            if (!int.TryParse(choice, out choiceInt) || choiceInt < 1 || choiceInt > 2)
+            if (!int.TryParse(stringinput, out intInput) || intInput < 1 || intInput > 2)
             {
                 DisplayErrorMessage("Invalid choice. Please enter 1 or 2.");
                 continue;
             }
 
-            switch (choiceInt)
+            switch (intInput)
             {
                 case 1:
-                    var feetInput = GetFeetFromUser();
-                    ConvertFeetToInch(feetInput);
+                    FeetAndInchConverter();
                     return;
                 case 2:
                     Console.WriteLine("\nThank you for using the Feet to Inches Converter!");
@@ -28,50 +36,75 @@
                     DisplayErrorMessage("Invalid choice. Please enter 1 or 2.");
                     break;
             }
+
         }
     }
 
-    static void DisplayMenu()
+    static void FeetAndInchConverter()
     {
-        Console.WriteLine("Welcome to the Feet to Inches Converter!");
-        Console.WriteLine("(1) Enter a new value in feet.");
-        Console.WriteLine("(2) Exit the program.");
-    }
+        Console.Clear();
+        const double InchesPerFoot = 12;
 
-    static double GetFeetFromUser()
-    {
+        DisplayMenu("Welcome to the Feet And Inch Converter.!\n");
+        DisplayMenu("(1) Convert Feet To Inch.");
+        DisplayMenu("(2) Convert Inch To Feet.");
+        DisplayMenu("(3) Back To Main Menu.");
+
         while (true)
         {
-            Console.Write("\nEnter a value in feet: ");
-            string inputString = Console.ReadLine();
+            string stringInput = Console.ReadLine();
+            int intInput;
 
-            if (double.TryParse(inputString, out double feetInput) && feetInput >= 0)
+            if (!int.TryParse(stringInput, out intInput) || intInput < 1 || intInput > 3)
             {
-                return feetInput;
+                DisplayErrorMessage("Invalid choice. Please enter 1, 2, or 3!");
+                continue;
             }
-            else
+
+            switch (intInput)
             {
-                DisplayErrorMessage("Please enter a valid positive numeric input.");
+                case 1:
+                    break;
+                case 2:
+
+                    return;
+                case 3:
+                    MainMenu();
+                    break;
+                default:
+                    DisplayErrorMessage("Invalid choice. Please enter 1 or 2.");
+                    break;
             }
         }
-    }
-    static double ConvertFeetToInch(double feetInput)
-    {
-        double result;
+
+        /*double result;
         const double InchesPerFoot = 12;
         result = feetInput * InchesPerFoot;
         DisplayResultMessage(feetInput, result);
 
-        return result;
+        return result;*/
     }
 
-    static void DisplayResultMessage(double feetInput, double result)
+    //Messages
+    #region
+    static void DisplayMenu(string message)
     {
-        Console.WriteLine($"{feetInput} is equals to {result} inches");
+        Console.WriteLine(message);
+    }
+    static void DisplayResultMessage(double valueInput, double result)
+    {
+        Console.WriteLine($"{valueInput} is equals to {result} inches");
     }
 
     static void DisplayErrorMessage(string message)
     {
         Console.WriteLine($"\nError: {message}\n");
     }
+
+    static void ThankyouMessage(string message)
+    {
+        Console.WriteLine($"\nError: {message}\n");
+    }
+    #endregion
+
 }
