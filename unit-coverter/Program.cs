@@ -1,24 +1,24 @@
-﻿internal class Program
+﻿
+internal class Program
 {
     static void Main(string[] args)
     {
-        MainMenu();
+        StartProgram();
     }
 
-    static void MainMenu()
+    #region Start Program
+    static void StartProgram()
     {
-        Console.Clear();
         DisplayMenu("Welcome to the Unit Converter!\n");
-        DisplayMenu("(1) Feet And Inch Converter.");
+        DisplayMenu("(1) Feet Converter");
         DisplayMenu("(2) Exit the program");
-
 
         while (true)
         {
-            string stringinput = Console.ReadLine();
+            string stringInput = Console.ReadLine();
             int intInput;
 
-            if (!int.TryParse(stringinput, out intInput) || intInput < 1 || intInput > 2)
+            if (!int.TryParse(stringInput, out intInput) || intInput < 1 || intInput > 2)
             {
                 DisplayErrorMessage("Invalid choice. Please enter 1 or 2.");
                 continue;
@@ -26,74 +26,111 @@
 
             switch (intInput)
             {
-                case 1:
-                    FeetAndInchConverter();
-                    return;
-                case 2:
-                    Console.WriteLine("\nThank you for using the Feet to Inches Converter!");
-                    return;
-                default:
-                    DisplayErrorMessage("Invalid choice. Please enter 1 or 2.");
-                    break;
+                case 1: Console.Clear(); FeetConverter(); return;
+                case 2: DisplayThankyouMessage("\nThank you for using the Unit Converter!"); return;
+                default: return;
             }
-
         }
     }
+    #endregion
 
-    static void FeetAndInchConverter()
+    #region FeetConverter
+    static void FeetConverter()
     {
-        Console.Clear();
         const double InchesPerFoot = 12;
+        const double CentimetersPerFoot = 30.48;
+        const double MetersPerFoot = 0.3048;
+        const double KilometersPerFoot = 0.0003048;
 
-        DisplayMenu("Welcome to the Feet And Inch Converter.!\n");
-        DisplayMenu("(1) Convert Feet To Inch.");
-        DisplayMenu("(2) Convert Inch To Feet.");
-        DisplayMenu("(3) Back To Main Menu.");
+        DisplayMenu("Welcome to the Feet Converter!\n");
+        DisplayMenu("(1) Convert to inches");
+        DisplayMenu("(2) Convert to centimeters");
+        DisplayMenu("(3) Convert to meters");
+        DisplayMenu("(4) Convert to kilometers");
+        DisplayMenu("(5) Back to Main Menu");
 
         while (true)
         {
+
             string stringInput = Console.ReadLine();
             int intInput;
 
-            if (!int.TryParse(stringInput, out intInput) || intInput < 1 || intInput > 3)
+            if (!int.TryParse(stringInput, out intInput) || intInput < 1 || intInput > 6)
             {
-                DisplayErrorMessage("Invalid choice. Please enter 1, 2, or 3!");
+                DisplayErrorMessage("Invalid choice. Please enter 1, 2, 3, 4, or 5!!!\n");
                 continue;
             }
 
             switch (intInput)
             {
-                case 1:
-                    break;
-                case 2:
-
-                    return;
-                case 3:
-                    MainMenu();
-                    break;
-                default:
-                    DisplayErrorMessage("Invalid choice. Please enter 1 or 2.");
-                    break;
+                case 1: FeetToInchConvertion(); return;
+                case 2: return;
+                case 3: return;
+                case 4: return;
+                case 5: Console.Clear(); StartProgram(); return;
+                default: return;
             }
         }
+        static void FeetToInchConvertion()
+        {
+            const double FeetToInch = 12;
 
-        /*double result;
-        const double InchesPerFoot = 12;
-        result = feetInput * InchesPerFoot;
-        DisplayResultMessage(feetInput, result);
+            while (true)
+            {
+                Console.Clear();
+                DisplayMenu("Feet To Inch Converter\n");
+                var feetInput = GetFeetInput();
 
-        return result;*/
+                Console.Clear();
+                DisplayResultMessage($"FEET: {feetInput}");
+                DisplayResultMessage($"INCH: {feetInput * FeetToInch:F2}");
+
+                DisplayMenu("\n(1) Convert Another Value");
+                DisplayMenu("(2) Back To Previos Main Menu");
+                DisplayMenu("(3) Back To Main Menu");
+                string input = Console.ReadLine().ToLower();
+
+                if ((!int.TryParse(input, out int intInput)) || (intInput < 1 && intInput > 3))
+                {
+                    DisplayErrorMessage("Please enter a 1, 2, or 3!\n");
+                    continue;
+                }
+                switch (intInput)
+                {
+                    case 1: Console.Clear(); FeetToInchConvertion(); return;
+                    case 2: Console.Clear(); FeetConverter(); return;
+                    case 3: Console.Clear(); StartProgram(); return;
+                    default: return;
+                }
+            }
+
+            static double GetFeetInput()
+            {
+                while (true)
+                {
+                    Console.Write("Enter Feet Value: ");
+                    string inputString = Console.ReadLine();
+
+                    if ((!double.TryParse(inputString, out double intInput)) || intInput <= 0)
+                    {
+                        DisplayErrorMessage("Please enter a valid positive numeric input.\n");
+                        continue;
+                    }
+                    return intInput;
+                }
+            }
+        }
     }
+    #endregion
 
-    //Messages
-    #region
+    #region Messages
     static void DisplayMenu(string message)
     {
         Console.WriteLine(message);
     }
-    static void DisplayResultMessage(double valueInput, double result)
+    static void DisplayResultMessage(string message)
     {
-        Console.WriteLine($"{valueInput} is equals to {result} inches");
+        Console.WriteLine(message);
     }
 
     static void DisplayErrorMessage(string message)
@@ -101,9 +138,9 @@
         Console.WriteLine($"\nError: {message}\n");
     }
 
-    static void ThankyouMessage(string message)
+    static void DisplayThankyouMessage(string message)
     {
-        Console.WriteLine($"\nError: {message}\n");
+        Console.WriteLine($"\n{message}\n");
     }
     #endregion
 
