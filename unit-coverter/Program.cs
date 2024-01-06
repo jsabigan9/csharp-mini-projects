@@ -40,14 +40,12 @@ internal class Program
         const double InchesPerFoot = 12;
         const double CentimetersPerFoot = 30.48;
         const double MetersPerFoot = 0.3048;
-        const double KilometersPerFoot = 0.0003048;
 
         DisplayMenu("Welcome to the Feet Converter!\n");
         DisplayMenu("(1) Convert to inches");
         DisplayMenu("(2) Convert to centimeters");
         DisplayMenu("(3) Convert to meters");
-        DisplayMenu("(4) Convert to kilometers");
-        DisplayMenu("(5) Back to Main Menu");
+        DisplayMenu("(4) Back to Main Menu");
 
         while (true)
         {
@@ -55,9 +53,9 @@ internal class Program
             string stringInput = Console.ReadLine();
             int intInput;
 
-            if (!int.TryParse(stringInput, out intInput) || intInput < 1 || intInput > 6)
+            if (!int.TryParse(stringInput, out intInput) || intInput < 1 || intInput > 4)
             {
-                DisplayErrorMessage("Invalid choice. Please enter 1, 2, 3, 4, or 5!!!\n");
+                DisplayErrorMessage("Invalid choice. Please enter 1, 2, 3, or 4!!!\n");
                 continue;
             }
 
@@ -66,8 +64,7 @@ internal class Program
                 case 1: FeetToInchConvertion(); return;
                 case 2: return;
                 case 3: return;
-                case 4: return;
-                case 5: Console.Clear(); StartProgram(); return;
+                case 4: Console.Clear(); StartProgram(); return;
                 default: return;
             }
         }
@@ -78,7 +75,7 @@ internal class Program
             while (true)
             {
                 Console.Clear();
-                DisplayMenu("Feet To Inch Converter\n");
+                DisplayMenu("[1] Feet To Inch Converter\n");
                 var feetInput = GetFeetInput();
 
                 Console.Clear();
@@ -88,6 +85,7 @@ internal class Program
                 DisplayMenu("\n(1) Convert Another Value");
                 DisplayMenu("(2) Back To Previos Main Menu");
                 DisplayMenu("(3) Back To Main Menu");
+
                 string input = Console.ReadLine().ToLower();
 
                 if ((!int.TryParse(input, out int intInput)) || (intInput < 1 && intInput > 3))
