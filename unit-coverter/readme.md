@@ -10,19 +10,13 @@ The Unit Converter program allows users to convert measurements between differen
 The program is structured to have a Main Menu where users can choose different unit conversion options. The primary conversion available is from feet to inches, centimeters, and meters.
 
 ### Features:
-1. **Main Menu:**
+**Main Menu:**
    - Feet Converter
+   - Inch Converter
+   - Centimeter Converter
+   - Meter Converter
    - Exit the program
 
-2. **Feet Converter Menu:**
-   - Convert to inches
-   - Convert to centimeters
-   - Convert to meters
-   - Back to Main Menu
-
-3. **Feet to Inches Conversion:**
-   - Accepts user input for feet and converts it to inches.
-   - Provides options to convert another value, go back to the previous menu, or return to the main menu.
 
 ### How to Use:
 1. Run the program.
